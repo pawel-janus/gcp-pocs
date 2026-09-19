@@ -46,11 +46,11 @@ Minimal Hono backend on Cloud Run that generates changelog entries from git comm
 
 ### [gcp-github-actions](https://github.com/pawel-janus/gcp-github-actions)
 
-Monorepo demonstrating CI/CD with GitHub Actions authenticated to GCP via Workload Identity Federation — no long-lived service account keys, zero static credentials. On push to `main`: GitHub's OIDC token is exchanged for a short-lived GCP access token, triggers deployment to multiple GCP services (Cloud Run, Firebase Hosting). Phase 1-2 complete: backend (Hono API) on Cloud Run, frontend (React weather app) on Firebase Hosting, both deployed via WIF.
+Monorepo demonstrating CI/CD with GitHub Actions authenticated to GCP via Workload Identity Federation — no long-lived service account keys, zero static credentials. Smart deployment with path filtering: deploy only changed workspaces (backend, frontend) or all when global files change (package.json, workflows). Phase 1-3 complete: backend (Hono API) on Cloud Run, frontend (React weather app) on Firebase Hosting, both deployed via WIF with conditional deployment based on file changes.
 
-**Patterns:** OIDC token exchange (GitHub → GCP) · keyless authentication · Workload Identity Pool + Provider · attribute-condition security (repo owner check) · least privilege IAM (per-service roles) · bucket-specific storage permissions · Cloud Build with staging/logs buckets · Firebase Hosting deployment via WIF · npm workspaces monorepo (multiple independent workspaces) · multi-stage Docker build · comprehensive WIF setup documentation
+**Patterns:** OIDC token exchange (GitHub → GCP) · keyless authentication · Workload Identity Pool + Provider · smart deployment with path filtering · reusable workflows pattern · conditional job execution · attribute-condition security (repo owner check) · least privilege IAM (per-service roles) · bucket-specific storage permissions · Cloud Build with staging/logs buckets · Firebase Hosting deployment via WIF · npm workspaces monorepo (multiple independent workspaces) · multi-stage Docker build · comprehensive WIF setup documentation
 
-`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Firebase Hosting` `Cloud Build` `Artifact Registry` `Hono` `React` `TypeScript` `npm workspaces`
+`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Firebase Hosting` `Cloud Build` `Artifact Registry` `Hono` `React` `TypeScript` `npm workspaces` `path filtering` `reusable workflows`
 
 ---
 
