@@ -44,13 +44,13 @@ Minimal Hono backend on Cloud Run that generates changelog entries from git comm
 
 ---
 
-### github-actions-wif *(planned)*
+### [gcp-github-actions](https://github.com/pawel-janus/gcp-github-actions)
 
-CI/CD pipeline using GitHub Actions authenticated to GCP via Workload Identity Federation — no long-lived service account keys stored anywhere. On push to `main`: build image → push to Artifact Registry → deploy to Cloud Run.
+Monorepo demonstrating CI/CD with GitHub Actions authenticated to GCP via Workload Identity Federation — no long-lived service account keys, zero static credentials. On push to `main`: GitHub's OIDC token is exchanged for a short-lived GCP access token, triggers Cloud Build, builds Docker image, pushes to Artifact Registry, and deploys to Cloud Run. Phase 1 complete: backend workspace (Hono API) deployed and working.
 
-**Patterns:** OIDC token exchange · keyless GCP authentication · minimal-privilege deploy service account · Artifact Registry
+**Patterns:** OIDC token exchange (GitHub → GCP) · keyless authentication · Workload Identity Pool + Provider · attribute-condition security (repo owner check) · two Service Accounts pattern (trigger SA + execution SA) · SA-specific IAM bindings (least privilege) · bucket-specific storage permissions · Cloud Build with staging/logs buckets · npm workspaces monorepo · multi-stage Docker build · comprehensive WIF setup documentation
 
-`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Artifact Registry`
+`GitHub Actions` `Workload Identity Federation` `Cloud Run` `Cloud Build` `Artifact Registry` `Hono` `TypeScript` `npm workspaces`
 
 ---
 
